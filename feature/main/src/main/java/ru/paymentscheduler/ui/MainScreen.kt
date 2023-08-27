@@ -60,6 +60,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import org.koin.androidx.compose.getViewModel
+import ru.paymentscheduler.component.compose.colors.Dark100
+import ru.paymentscheduler.component.compose.colors.White75
+import ru.paymentscheduler.component.compose.navbar.NavbarColor
 import ru.paymentscheduler.domain.entity.Month
 import ru.paymentscheduler.domain.entity.PaymentInfo
 import ru.paymentscheduler.presentation.ContentType
@@ -79,9 +82,6 @@ fun MainScreen(
 		initial = MainState.Initial,
 	)
 
-	val isVisible by remember {
-		mutableStateOf(true)
-	}
 	Surface(
 		color = MaterialTheme.colors.primaryVariant,
 		modifier = Modifier
@@ -90,11 +90,7 @@ fun MainScreen(
 
 		when (state) {
 			is MainState.Content -> {
-				AnimatedVisibility(
-					visible = isVisible,
-				) {
-					RenderContent(state as MainState.Content, viewModel::changeMonth)
-				}
+				RenderContent(state as MainState.Content, viewModel::changeMonth)
 			}
 
 			MainState.Error      -> Unit
@@ -110,12 +106,16 @@ fun MainScreen(
 fun RenderContent(state: MainState.Content, changeMonth: (String) -> Unit) {
 	when (state.contentType) {
 		is ContentType.Content -> {
-			RenderContentData(state.contentType.paymentList, state.contentType.currentMonth, changeMonth)
+			AnimatedVisibility(visible = true) {
+				RenderContentData(state.contentType.paymentList, state.contentType.currentMonth, changeMonth)
+			}
+
 		}
 
 		is ContentType.Empty   -> {
-			RenderEmptyContent(state.contentType.currentMonth, changeMonth)
-
+			AnimatedVisibility(visible = true) {
+				RenderEmptyContent(state.contentType.currentMonth, changeMonth)
+			}
 		}
 	}
 }
@@ -264,19 +264,6 @@ fun AppBar(onBackClick: () -> Unit, currentMonth: Month, changeMonth: (String) -
 	}
 }
 
-@Composable
-fun NavbarColor() {
-	val systemUiController = rememberSystemUiController()
-	systemUiController.setNavigationBarColor(Dark100)
-	systemUiController.navigationBarDarkContentEnabled = true
-	systemUiController.setStatusBarColor(Dark100)
-	SideEffect {
-		systemUiController.setNavigationBarColor(
-			color = Dark100,
-		)
-	}
-}
-
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun Loading() {
@@ -287,7 +274,3 @@ private fun Loading() {
 	val keyboardController = LocalSoftwareKeyboardController.current
 	keyboardController?.hide()
 }
-
-private val Dark100 = Color(0xFF0D0E0F)
-private val Dark75 = Color(0xFF161719)
-private val White75 = Color(0xff8f8f8f)

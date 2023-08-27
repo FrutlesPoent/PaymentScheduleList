@@ -20,6 +20,7 @@ dependencies {
 //	implementation Dependencies.compose_lifecycle
 
 	implementation(project(':component:ui'))
+	implementation(project(':component:compose'))
 
 	implementation(project(':shared:paymentInfo'))
 }

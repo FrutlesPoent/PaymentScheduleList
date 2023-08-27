@@ -3,12 +3,13 @@ apply plugin: Plugins.kotlin_android
 
 apply from: "$rootDir/build_system/androidLibrary.gradle"
 dependencies {
-	implementation Dependencies.kotlin_standart_library
 	implementation Dependencies.core
 	implementation Dependencies.app_compat
 	implementation Dependencies.material
+	implementation Dependencies.fragment
+	implementation Dependencies.constraint_layout
+	implementation Dependencies.cicerone
 	implementation Dependencies.koin_core
-	implementation Dependencies.koin_compose
 	implementation Dependencies.koin_android
 	implementation Dependencies.compose_ui
 	implementation Dependencies.compose_material
@@ -16,11 +17,4 @@ dependencies {
 	implementation Dependencies.compose_activity
 	implementation Dependencies.compose_runtime
 	implementation Dependencies.accompanist
-	implementation Dependencies.androidx_activity
-//	implementation Dependencies.compose_lifecycle
-
-	implementation(project(':component:ui'))
-	implementation(project(':component:compose'))
-
-	implementation(project(':shared:paymentInfo'))
 }

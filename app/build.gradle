@@ -1,0 +1,27 @@
+apply plugin: Plugins.android_application
+apply plugin: Plugins.kotlin_android
+
+apply from: "$rootDir/build_system/androidApplication.gradle"
+
+dependencies {
+	implementation Dependencies.app_compat
+	implementation Dependencies.core
+	implementation Dependencies.cicerone
+	implementation Dependencies.constraint_layout
+	implementation Dependencies.fragment
+	implementation Dependencies.koin_core
+	implementation Dependencies.koin_android
+	implementation Dependencies.material
+	implementation Dependencies.gson
+	implementation Dependencies.compose_ui
+	implementation Dependencies.compose_material
+	implementation Dependencies.compose_ui_preview
+	implementation Dependencies.compose_activity
+	implementation Dependencies.compose_navigation
+	implementation Dependencies.compose_runtime
+	implementation Dependencies.accompanist
+
+	implementation(project(":feature:main"))
+	
+	implementation(project(":shared:paymentInfo"))
+}

@@ -1,0 +1,10 @@
+ext.Configs = [
+	application_id    : "ru.paymentscheduler",
+	target_sdk        : 30,
+	compile_sdk       : 31,
+	min_sdk           : 30,
+	build_tool_version: "30.0.3",
+	jvm_target        : "1.8",
+	code              : 1,
+	name              : "1.0",
+]

@@ -1,0 +1,19 @@
+apply plugin: Plugins.android_library
+apply plugin: Plugins.kotlin_android
+
+apply from: "$rootDir/build_system/androidLibrary.gradle"
+dependencies {
+	implementation Dependencies.core
+	implementation Dependencies.app_compat
+	implementation Dependencies.material
+	implementation Dependencies.fragment
+	implementation Dependencies.constraint_layout
+	implementation Dependencies.cicerone
+	implementation Dependencies.koin_core
+	implementation Dependencies.koin_android
+	implementation Dependencies.compose_ui
+	implementation Dependencies.compose_material
+	implementation Dependencies.compose_ui_preview
+	implementation Dependencies.compose_activity
+	implementation Dependencies.compose_runtime
+}

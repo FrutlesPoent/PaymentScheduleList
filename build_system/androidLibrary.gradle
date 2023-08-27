@@ -1,0 +1,36 @@
+apply from: "$rootDir/build_system/configs.gradle"
+
+android {
+	compileSdkVersion Configs.compile_sdk
+	buildToolsVersion Configs.build_tool_version
+
+	defaultConfig {
+		minSdkVersion Configs.min_sdk
+		targetSdkVersion Configs.target_sdk
+		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+		}
+	}
+
+	buildFeatures {
+		compose true
+		viewBinding true
+	}
+
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	kotlinOptions {
+		jvmTarget = Configs.jvm_target
+	}
+
+	composeOptions {
+		kotlinCompilerExtensionVersion '1.1.1'
+	}
+}

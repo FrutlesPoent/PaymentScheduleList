@@ -1,0 +1,10 @@
+rootProject.name = "PaymentScheduler"
+
+include ':app'
+
+include ':component:ui'
+
+include ':feature:main'
+include ':feature:create'
+
+include ':shared:paymentInfo'
